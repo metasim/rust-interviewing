@@ -1,16 +1,23 @@
 TYPST   := typst
-SRC     := main.typ
-OUTPUT  := presentation.pdf
+SRC     := rust-interviewing.typ
+OUTPUT  := rust-interviewing.pdf
+HANDOUT := rust-interviewing-handout.pdf
 
-.PHONY: all clean watch
+.PHONY: all clean watch handout
 
-all: $(OUTPUT)
+all: $(OUTPUT) 
 
 $(OUTPUT): $(SRC)
 	$(TYPST) compile $(SRC) $(OUTPUT)
+
+handout: $(HANDOUT)
+
+$(HANDOUT): $(SRC)
+	$(TYPST) compile --pdf-standard 1.4 --input handout=true $(SRC) $(HANDOUT)
+	@echo "Handout with notes generated: $(HANDOUT)"
 
 watch:
 	$(TYPST) watch $(SRC) $(OUTPUT)
 
 clean:
-	rm -f $(OUTPUT)
+	rm -f $(OUTPUT) $(HANDOUT) $(PDFPC)
