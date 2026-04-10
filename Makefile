@@ -13,7 +13,7 @@ $(OUTPUT): $(SRC)
 handout: $(HANDOUT)
 
 $(HANDOUT): $(SRC)
-	$(TYPST) compile --pdf-standard 1.4 --input handout=true $(SRC) $(HANDOUT)
+	$(TYPST) compile --pdf-standard a-2b --input handout=true $(SRC) $(HANDOUT)
 	@echo "Handout with notes generated: $(HANDOUT)"
 
 watch:
