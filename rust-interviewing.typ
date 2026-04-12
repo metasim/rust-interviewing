@@ -16,11 +16,17 @@
 
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
-  header-right: fa-rust(),
+  header-right: [
+    #move(dy: -0.3em)[
+      #box(baseline: 40%)[#fa-rust()]
+      #box(baseline: 40%)[#image("images/UVA-rotunda.svg", height: 1.0em)]
+    ]
+  ],
   config-info(
     title: [Sharpening your Rust Skills for Job Interviews],
     subtitle: [How to Become a Stand-out Candidate],
     author: [Simeon H.K. Fitch],
+    institution: [Brown Science & Engineering Library\ University of Virginia],
     date: [April 14th, 2026],
   ),
   config-common(
@@ -42,18 +48,70 @@
   pad(left: 1em, top: -0.5em)[#body]
 }
 
+// Overlays `modal-body` centered on top of the slide after a pause.
+// The slide content is shown first; the next subslide reveals the modal.
+// Advancing again moves to the next slide.
+#let modal(modal-body, width: 60%, inset: 2em) = {
+  pause
+  place(center + horizon,
+    block(
+      width: width,
+      inset: inset,
+      radius: 0.5em,
+      fill: white,
+      stroke: 1.5pt + rgb("#23233b"),
+    )[#modal-body]
+  )
+}
+
+#let grouped-enum-panel(
+  title,
+  start: 1,
+  fill: white,
+  stroke: black,
+  text-fill: luma(5%),
+  ..items,
+) = {
+  block(
+    width: 100%,
+    inset: 0.4em,
+    radius: 0.35em,
+    fill: fill,
+    stroke: (paint: stroke, thickness: 0.6pt),
+  )[
+    #place(top + right,
+      box(
+        radius: 0.2em,
+      )[
+        #text(size: 0.72em, weight: "semibold", fill: text-fill)[#title]
+      ]
+    )
+    #set text(size: 0.9em, fill: text-fill)
+    #pad(top: 0.1em, right: 8em)[
+      #enum(
+        start: start,
+        tight: true,
+        ..items,
+      )
+    ]
+  ]
+}
+
 // Title
 #title-slide()
 
-== Motivation
+= Context <touying:hidden>
+
+== The Interview
 
 #focus-slide(align: left, config: config-common(freeze-slide-counter: false))[
-
-  You're landed the interview...
-  #speaker-note()[- How many of you have "Rust" on your resume?]
+  #speaker-note[- How many of you have "Rust" on your resume?]
+  #pause
+  You've landed the interview...
+  #speaker-note[- How many of you have had a Rust interview already?]
   #pause
   #indent[it's going well...
-    #speaker-note()[- How many of you have had a Rust interview already?]
+    #speaker-note[- How would you know it's going well?]
     #pause
     #indent[and the engineering manager asks...]
   ]
@@ -67,9 +125,9 @@
   ]
 
   #speaker-note[
-    - How do you answer?
-    - Most candidates haven't thought about that question
-    - I’m going to show you a way of thinking about Rust that most engineers only develop after years of experience
+    - Do you think it's a realistic question?
+    - How would you answer? Most candidates haven't thought about that question, especially if they're recent graduates.
+    - *I’m going to show you a way of thinking about Rust that most engineers only develop after years of experience*
   ]
 ]
 
@@ -105,7 +163,10 @@
 #underline[Career thread]: Deploying reliable, maintainable, and performant software solutions.
 
 #speaker-note[
-  - My goal is to bring a practical  perspective to Rust in the context of professional software engineering, both as a developer and as a manager
+  - My goal is to bring a practical  perspective to Rust in the context of professional software engineering, both as a developer and as a manager.
+  - Many of you may be hoping for a "sliver bullet" answer. There is none, nor is there time here to get into a lot of specifics.
+  - It takes years to master a language, something we can't achieve here nor before a near-term interview. "Mastery" is arguably _not_ the goal here. 
+  - However, we can develop a roadmap to work against to work toward becoming a stand-out candidate.
 ]
 
 == Restatement
@@ -119,10 +180,10 @@
 
   #speaker-note()[
     #set text(size: 0.9em)
-    - The crux of this presentation: Think about the "Why" for the organization you're interviewing with.
-    - Let's here some answers...
+    - The crux of this presentation: 
+      - Think about the "Why" for the organization you're interviewing with
+      - Then we'll think about the "How" of Rust
   ]
-
   #pause
   #v(0.5em)
   Why would _you_ be asked that question?
@@ -130,9 +191,11 @@
   #speaker-note[
     #set text(size: 0.9em)
     - In a Rust interview, the goal isn't just to show that you know the language, but to also show that you understand what Rust brings to the table in terms of the problems it solves for the organization, the guarantees it provides, and the trade-offs it makes.
-    - The candidates who get offers over equally qualified peers are the ones who demonstrate  understanding of problems the organization is trying to solve.
+    - The candidates who get offers over equally qualified peers are the ones who demonstrate understanding of problems the organization is trying to solve.
   ]
 ]
+
+= Drivers for Commercial Software Engineering
 
 == Employer Motivator: Total Cost of Solution
 #let fh = 0.45
@@ -173,6 +236,54 @@
   - Rust is one of the few languages where the path from "I know how to use this tool" to "I understand why this tool exists and what it costs and saves organizations" is unusually short and well-documented.
 ]
 
+== How Rust Delivers
+
+#layout(size =>
+  utils.fit-to-height(size.height)[
+    #stack(
+      dir: ttb,
+      spacing: 0.35em,
+      grouped-enum-panel(
+        [Baseline Knowledge],
+        start: 1,
+        fill: rgb("#e7eef8"),
+        stroke: rgb("#7d9cc4"),
+      )[
+        Undefined behavior is eliminated by design, not by convention
+      ][
+        Zero-runtime cost memory safety without a garbage collector
+      ][
+        Data race freedom is enforced, not tested
+      ],
+      grouped-enum-panel(
+        [Systems Thinking],
+        start: 4,
+        fill: rgb("#fbe9d2"),
+        stroke: rgb("#d79a3a"),
+      )[
+        The type system encodes and enforces domain invariants
+      ][
+        Fearless refactoring, at scale
+      ],
+      grouped-enum-panel(
+        [Strategic Thinking],
+        start: 6,
+        fill: rgb("#e5f1e8"),
+        stroke: rgb("#6f9e78"),
+      )[
+        Onboarding new contributors to an existing codebase is less risky
+      ][
+        Lower maintenance costs through machine-checked invariants slow the accumulation of technical debt
+      ],
+    )
+  ]
+)
+
+#speaker-note[
+
+]
+
+
 == How to Stand Out
 
 === View Software Engineering from the Employer's Perspective
@@ -182,31 +293,18 @@
 + Take a deep dive into 
 
 #speaker-note()[
+  - The skills and mindset that make someone effective at Rust are the same skills and mindset that make someone effective as a professional software engineer
   - The alignment between the skills that make someone effective at Rust and the skills that make someone effective as a professional software engineer is the good news here: the effort you put into learning Rust and thinking in the way Rust encourages is directly applicable to being a strong engineer in general.
   - The questions you ask and the way you frame your answers should demonstrate that you understand Rust in the context of the organization's needs and priorities.
   - Then think about the "How" via Rust.
 ]
 
-== How Rust Delivers
+= Preperatory Roadmap
 
-NEEDS WORK
-
-- Two dimensions;
-  - Features and garantees
-  - Structurally scales to large teams
-- The skills and mindset that make someone effective at Rust are the same skills and mindset that make someone effective as a professional software engineer
-  - Careful attention to ownership, lifetimes, type correctness
-  - Considering safety and correctness up-front
-- Rust is a language that rewards the kind of thinking that organizations actually need from engineers
-
-#speaker-note()[
-  - Rust was designed to solve industrial problems.
-  - Understanding Rust deeply is inseparable from understanding why organizations choose it.
+#speaker-note[
+  - Rust is a language that rewards the kind of thinking that organizations actually need from engineers
+  - Understanding Rust deeply is to understand why organizations choose it.
 ]
-
-= How to get there...
-
-#speaker-note()[- Now we'll get more concrete...]
 
 == How to go from Candidate to Employee
 
@@ -353,6 +451,12 @@ NEEDS WORK
   - Read articles. Read the source. Experiment with them. Form an opinion.
 ]
 
+// #modal[
+//   === https://lib.rs 
+//   Helpful Tags and Cross Refereces
+//   #image("images/lib-rs.png")
+// ]
+
 == Next Steps: Build System
 
 #grid(
@@ -439,7 +543,6 @@ NEEDS WORK
 #speaker-note()[
   - Different people have different learning styles.
   - Some are book-first, others are do-first
-
 ]
 
 
