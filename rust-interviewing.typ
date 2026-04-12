@@ -203,7 +203,24 @@
   ]
 ]
 
-= Drivers for Commercial Software Engineering
+= Cost Drivers in Commercial Software Engineering
+
+== How to Stand Out
+
+=== View Software Engineering from the Employer's Perspective
+  - Understand the engineering needs of the employer (hint: return on investment)
+  - Map the capabilities and guarantees of Rust (and its ecosystem) to those needs
+  - Understanding Rust deeply is to understand why organizations choose it.
+
+=== Good News!
+  - Rust is a language that rewards the kind of thinking that organizations actually need from engineers
+  - The skills and mindset that make someone effective at Rust are the generally the same that make someone an effective software engineer
+  - The effort you put into learning Rust and thinking in the way Rust encourages is directly applicable to being a strong engineer in general.
+
+#speaker-note[
+  - The alignment between the skills that make someone effective at Rust and the skills that make someone effective as a professional software engineer is the good news here: 
+  - The questions you ask and the way you frame your answers should demonstrate that you understand Rust in the context of the organization's needs and priorities.
+]
 
 == Employer Motivator: Total Cost of Solution
 #let fh = 0.45
@@ -238,7 +255,7 @@
   )),
 ))
 
-#speaker-note()[
+#speaker-note[
   - Organizations care about 
     - Cost to develop
     - Cost to extend / scale / modify
@@ -246,24 +263,9 @@
   - In addition to bugs, those costs are affected by:
     - Inherent vs accidental complexity
     - Technical debt
-    - Talent aquisition and onboarding
+    - Talent acquisition and onboarding
 ]
 
-
-== How to Stand Out
-
-=== View Software Engineering from the Employer's Perspective
-
-+ Understand the engineering needs of the employer
-+ Map the capabilities and garantees of Rust (and its ecosystem) to those needs
-+ Take a deep dive into a domain's ecosystem
-
-#speaker-note()[
-  - The skills and mindset that make someone effective at Rust are the same skills and mindset that make someone effective as a professional software engineer
-  - The alignment between the skills that make someone effective at Rust and the skills that make someone effective as a professional software engineer is the good news here: the effort you put into learning Rust and thinking in the way Rust encourages is directly applicable to being a strong engineer in general.
-  - The questions you ask and the way you frame your answers should demonstrate that you understand Rust in the context of the organization's needs and priorities.
-  - Then think about the "How" via Rust.
-]
 
 #slide(
   title: [How Rust Delivers],
@@ -297,7 +299,9 @@
               )[
                 The type system encodes and enforces domain invariants
               ][
-                Fearless refactoring, at scale
+                The module, crate, and workspace system provides a natural unit of decomposition that scales
+              ][
+                Large-scale refactoring is bounded by the compiler, not by test coverage
               ]
             ],
             uncover("3-")[
@@ -307,9 +311,11 @@
                 fill: rgb("#e5f1e8"),
                 stroke: rgb("#6f9e78"),
               )[
-                Onboarding new contributors to an existing codebase is less risky
-              ][
                 Lower maintenance costs through machine-checked invariants slow the accumulation of technical debt
+              ][
+                Upgrading shared dependencies surfaces breaking changes at compile time, reducing cross-team coordination cost
+              ][
+                Onboarding new contributors to an existing codebase is less risky
               ]
             ],
           )
@@ -317,40 +323,38 @@
       )
 
       #speaker-note(subslide: [1,2,3])[
-        - Baseline Knowledge: Your understanding of these these will be a given. Make sure you undestand deeply how Rust achieves these.
+        - Baseline: Your understanding of these these items will be a _given_. Make sure you understand deeply how Rust achieves these.
       ]
 
       #speaker-note(subslide: [2,3])[
-        - Systems Thinking: 
+        - Engineering: With a strong type system, you can model complex invariants (requirements) that are *guaranteed* at compile time (e.g. non-zero, non-empty, validated, etc.)
       ]
 
       #speaker-note(subslide: 3)[
-        - Strategic Thinking
+        - Organization: Strong types and strong guarantees mean less experienced people can be added more quickly to a team with lower risks/costs.
       ]
     ]
   },
 )
 
-
-
-= Preperatory Roadmap
+= Preparatory Roadmap
 
 #speaker-note[
-  - Rust is a language that rewards the kind of thinking that organizations actually need from engineers
-  - Understanding Rust deeply is to understand why organizations choose it.
+  - This is not a prescription with guaranteed results; ultimately that rests on your consistent and dedicated preparation
+  - What I'm offering here is a way of decomposing the process into something that's manageable over the span of weeks-to-months.
 ]
 
 == How to go from Candidate to Employee
 
-=== Roadmap to Comprehesive Coverage
+=== Roadmap to Comprehensive Coverage
 
 #let next-steps(highlight: none) = {
   let steps = (
-    [Figure out what domain(s) you're intereseted working within, or where you're seeing opportunity],
-    [Dive deeply into the crates exist to serve that ecosystem.],
+    [Figure out what domain(s) you're interested working within, or where you're seeing opportunity],
+    [Dive deeply into the crates exist to serve that ecosystem],
     [From your research, select the largest, most complicated project and read all the `Cargo.toml` and `build.rs` files],
     [Pick parts of the standard library and read the source],
-    [Read some part of #link("http://cheats.rs")[`cheats.rs`] e very day],
+    [Read some part of #link("http://cheats.rs")[`cheats.rs`] and/or #link("https://doc.rust-lang.org/book/")[The Rust Book] every day],
   )
   enum(
     ..steps
@@ -443,7 +447,7 @@
   })
 ]
 
-#speaker-note()[
+#speaker-note[
   - You will want to come at this from both directions
     - Sometimes focus on top-down
     - Other times focus bottom-up
@@ -463,7 +467,7 @@
   ],
 )
 
-#speaker-note()[
+#speaker-note[
    - If you're not sure, pick something general, like "backend web services".
 ]
 
@@ -480,14 +484,14 @@
   ],
 )
 
-#speaker-note()[
+#speaker-note[
   - Search keywords on lib.rs
   - Read articles. Read the source. Experiment with them. Form an opinion.
 ]
 
 // #modal[
 //   === https://lib.rs 
-//   Helpful Tags and Cross Refereces
+//   Helpful Tags and Cross References
 //   #image("images/lib-rs.png")
 // ]
 
@@ -504,7 +508,7 @@
   ],
 )
 
-#speaker-note()[
+#speaker-note[
   - If you don't understand something, ask AI to explain.
   - Try refactoring or improving the organization.
 ]
@@ -522,13 +526,13 @@
   ],
 )
 
-#speaker-note()[
+#speaker-note[
   - If you don't understand a design decision, ask AI to explain.
   - Check out the container cheat sheet, and map the diagrams to the actual declarations. 
     https://tinyurl.com/container-cheat-sheet
 ]
 
-== Next Steps: Langugage
+== Next Steps: Language
 
 #grid(
   columns: (1fr, auto),
@@ -541,13 +545,13 @@
   ],
 )
 
-#speaker-note()[
+#speaker-note[
   - Again, Research what you don't understand.
   - Go down rabbit holes.
   - Take notes on what you learn.
 ]
 
-== Next Steps: Roadmap
+== Full Roadmap
 
 #grid(
   columns: (1fr, auto),
@@ -560,25 +564,29 @@
   ],
 )
 
+#speaker-note[
+  - Again, to be effective, alternate directions, biasing the one where your understanding and knowledge are weaker.
+]
+
 == Educational Resources
 
 - *Remember*: Nothing beats writing code and working through challenging problems (with patience and consistency)
 
-- Generally, any search will provide a plethora of great educational resources. Pick the ones that fit your learning style
+- Generally, any search will provide a plethora of great educational resources. Pick the ones that fit your learning style.
 
-- Some of my favorites:
+- Personal "Hall of Fame":
   - https://doc.rust-lang.org
   - https://cheats.rs
+  - https://lib.rs
   - https://github.com/microsoft/RustTraining
   - https://tinyurl.com/container-cheat-sheet
   - https://github.com/rust-unofficial/awesome-rust
- - https://lib.rs
 
 #speaker-note()[
-  - Different people have different learning styles.
+  - Different people have different learning styles
   - Some are book-first, others are do-first
+  - Try multiple ways, but lean into what's intuitive for you
 ]
-
 
 == Final Thoughts
 
@@ -611,5 +619,10 @@
   #align(bottom)[
     PS: These slides were #link("https://github.com/typst/typst")[rendered by Rust!]
   ]
+]
+
+#speaker-note[
+  - Feel free to message me on LinkedIn, or via the contact info on my business card.
+  - If there's interest, I'd be happy to meet informally to discuss Rust with a group of at least 3, if someone else coordinates it.
 ]
 
