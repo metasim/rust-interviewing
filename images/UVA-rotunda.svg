@@ -15,7 +15,7 @@
   <defs
      id="defs1">
     <style
-      id="style1">&#10;      .st0, .st1 {&#10;        fill: #fafafa;&#10;      }&#10;&#10;      .st2, .st3 {&#10;        fill: #e5691a;&#10;      }&#10;&#10;      .st3, .st1 {&#10;        fill-rule: evenodd;&#10;      }&#10;    </style>
+      id="style1">&#10;      .st0, .st1 {&#10;        fill: #fafafa;&#10;      }&#10;&#10;      .st2, .st3 {&#10;        fill: #fafafa;&#10;      }&#10;&#10;      .st3, .st1 {&#10;        fill-rule: evenodd;&#10;      }&#10;    </style>
     <filter
        inkscape:label="Fast Crop"
        inkscape:auto-region="false"

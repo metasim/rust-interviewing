@@ -14,12 +14,21 @@
   else            { none   }
 }
 
+#let qr-src(..args) = {
+  qr-code("https://github.com/metasim/rust-interviewing/releases", height: 5cm, ..args)
+}
+
+#let rotunda(height: 1.1em) = {
+  image("images/UVA-rotunda.svg", height: height)
+}
+
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
   header-right: [
     #move(dy: -0.3em)[
-      #box(baseline: 40%)[#fa-rust()]
-      #box(baseline: 40%)[#image("images/UVA-rotunda.svg", height: 1.0em)]
+      #box[#rotunda()]
+      #box[#fa-rust()]
+      #box[#qr-src(height: 1.1em)] 
     ]
   ],
   config-info(
@@ -111,7 +120,7 @@
   #speaker-note[- How many of you have had a Rust interview already?]
   #pause
   #indent[it's going well...
-    #speaker-note[- How would you know it's going well?]
+    #speaker-note[- Let's assume you're being your best?]
     #pause
     #indent[and the engineering manager asks...]
   ]
@@ -125,9 +134,8 @@
   ]
 
   #speaker-note[
-    - Do you think it's a realistic question?
     - How would you answer? Most candidates haven't thought about that question, especially if they're recent graduates.
-    - *I’m going to show you a way of thinking about Rust that most engineers only develop after years of experience*
+    - *I’m going to show you a way of thinking about Rust that most engineers only develop after years of experience, helping you stand out as a candidate.*
   ]
 ]
 
@@ -164,7 +172,7 @@
 
 #speaker-note[
   - My goal is to bring a practical  perspective to Rust in the context of professional software engineering, both as a developer and as a manager.
-  - Many of you may be hoping for a "sliver bullet" answer. There is none, nor is there time here to get into a lot of specifics.
+  - Many of you may be hoping for a "sliver bullet" to landing a Rust job. Unfortunately, there is none, nor is there time here to teach specifics.
   - It takes years to master a language, something we can't achieve here nor before a near-term interview. "Mastery" is arguably _not_ the goal here. 
   - However, we can develop a roadmap to work against to work toward becoming a stand-out candidate.
 ]
@@ -214,7 +222,7 @@
       dir: ttb,
       spacing: 0.3em,
       box(stroke: 0.5pt)[#image("images/Relative Cost of Fixing a Flaw.png", height: size.height * fh)],
-      text(size: 0.35em, fill: gray)[https://dzone.com/articles/quality-is-the-answer],
+      text(size: 0.35em)[https://dzone.com/articles/quality-is-the-answer],
     ),
     stack(
       dir: ttb,
@@ -225,62 +233,20 @@
       )],
       text(
         size: 0.35em,
-        fill: gray,
       )[Sanders & Klein, _Procedia Computer Science_ 8 (2012), Fig. 1 (orig. INCOSE SE Handbook, 2006)],
     ),
   )),
 ))
 
 #speaker-note()[
-  - In the time we have ahead I’m going to show you a way of thinking about Rust that most engineers only develop after years of experience — and you can start developing it right now.
-  - Rust is one of the few languages where the path from "I know how to use this tool" to "I understand why this tool exists and what it costs and saves organizations" is unusually short and well-documented.
-]
-
-== How Rust Delivers
-
-#layout(size =>
-  utils.fit-to-height(size.height)[
-    #stack(
-      dir: ttb,
-      spacing: 0.35em,
-      grouped-enum-panel(
-        [Baseline Knowledge],
-        start: 1,
-        fill: rgb("#e7eef8"),
-        stroke: rgb("#7d9cc4"),
-      )[
-        Undefined behavior is eliminated by design, not by convention
-      ][
-        Zero-runtime cost memory safety without a garbage collector
-      ][
-        Data race freedom is enforced, not tested
-      ],
-      grouped-enum-panel(
-        [Systems Thinking],
-        start: 4,
-        fill: rgb("#fbe9d2"),
-        stroke: rgb("#d79a3a"),
-      )[
-        The type system encodes and enforces domain invariants
-      ][
-        Fearless refactoring, at scale
-      ],
-      grouped-enum-panel(
-        [Strategic Thinking],
-        start: 6,
-        fill: rgb("#e5f1e8"),
-        stroke: rgb("#6f9e78"),
-      )[
-        Onboarding new contributors to an existing codebase is less risky
-      ][
-        Lower maintenance costs through machine-checked invariants slow the accumulation of technical debt
-      ],
-    )
-  ]
-)
-
-#speaker-note[
-
+  - Organizations care about 
+    - Cost to develop
+    - Cost to extend / scale / modify
+    - Cost to maintain
+  - In addition to bugs, those costs are affected by:
+    - Inherent vs accidental complexity
+    - Technical debt
+    - Talent aquisition and onboarding
 ]
 
 
@@ -290,7 +256,7 @@
 
 + Understand the engineering needs of the employer
 + Map the capabilities and garantees of Rust (and its ecosystem) to those needs
-+ Take a deep dive into 
++ Take a deep dive into a domain's ecosystem
 
 #speaker-note()[
   - The skills and mindset that make someone effective at Rust are the same skills and mindset that make someone effective as a professional software engineer
@@ -298,6 +264,74 @@
   - The questions you ask and the way you frame your answers should demonstrate that you understand Rust in the context of the organization's needs and priorities.
   - Then think about the "How" via Rust.
 ]
+
+#slide(
+  title: [How Rust Delivers],
+  repeat: 3,
+  self => {
+    let (uncover,) = utils.methods(self)
+    [
+      #layout(size =>
+        utils.fit-to-height(size.height)[
+          #stack(
+            dir: ttb,
+            spacing: 0.35em,
+            grouped-enum-panel(
+              [Baseline],
+              start: 1,
+              fill: rgb("#e7eef8"),
+              stroke: rgb("#7d9cc4"),
+            )[
+              Undefined behavior is *eliminated* by design, not by convention
+            ][
+              Zero runtime cost memory-safety without a garbage collector
+            ][
+              Data race freedom is enforced, not tested
+            ],
+            uncover("2-")[
+              #grouped-enum-panel(
+                [Engineering],
+                start: 4,
+                fill: rgb("#fbe9d2"),
+                stroke: rgb("#d79a3a"),
+              )[
+                The type system encodes and enforces domain invariants
+              ][
+                Fearless refactoring, at scale
+              ]
+            ],
+            uncover("3-")[
+              #grouped-enum-panel(
+                [Organization],
+                start: 6,
+                fill: rgb("#e5f1e8"),
+                stroke: rgb("#6f9e78"),
+              )[
+                Onboarding new contributors to an existing codebase is less risky
+              ][
+                Lower maintenance costs through machine-checked invariants slow the accumulation of technical debt
+              ]
+            ],
+          )
+        ]
+      )
+
+      #speaker-note(subslide: [1,2,3])[
+        - Baseline Knowledge: Your understanding of these these will be a given. Make sure you undestand deeply how Rust achieves these.
+      ]
+
+      #speaker-note(subslide: [2,3])[
+        - Systems Thinking: 
+      ]
+
+      #speaker-note(subslide: 3)[
+        - Strategic Thinking
+      ]
+    ]
+  },
+)
+
+
 
 = Preperatory Roadmap
 
@@ -570,7 +604,8 @@
 
   #v(3em)
 
-  #qr-code("https://github.com/metasim/rust-interviewing/releases", width: 5cm)
+  #qr-src()
+
   #fa-github() #link("https://github.com/metasim")[github.com/metasim]
 
   #align(bottom)[

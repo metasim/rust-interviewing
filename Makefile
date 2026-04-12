@@ -21,3 +21,9 @@ watch:
 
 clean:
 	rm -f $(OUTPUT) $(HANDOUT) $(PDFPC)
+
+
+flattened-%.pdf: %.pdf
+	gs -dNOPAUSE -dBATCH -sDEVICE=pdfimage32 -sOutputFile=$@ $<
+
+flattened: flattened-$(HANDOUT)
