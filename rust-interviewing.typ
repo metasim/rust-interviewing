@@ -172,9 +172,8 @@
 
 #speaker-note[
   - My goal is to bring a practical  perspective to Rust in the context of professional software engineering, both as a developer and as a manager.
-  - Many of you may be hoping for a "sliver bullet" to landing a Rust job. Unfortunately, there is none, nor is there time here to teach specifics.
-  - It takes years to master a language, something we can't achieve here nor before a near-term interview. "Mastery" is arguably _not_ the goal here. 
-  - However, we can develop a roadmap to work against to work toward becoming a stand-out candidate.
+  - It takes years to master a language, something we can't achieve here nor before a near-term interview. 
+  - However, we can develop a roadmap for becoming a stand-out candidate.
 ]
 
 == Restatement
@@ -188,9 +187,9 @@
 
   #speaker-note()[
     #set text(size: 0.9em)
-    - The crux of this presentation: 
-      - Think about the "Why" for the organization you're interviewing with
-      - Then we'll think about the "How" of Rust
+    - The crux of this presentation:
+      - Think about the "Why" for the organization
+      - Then understand the "How"
   ]
   #pause
   #v(0.5em)
@@ -198,29 +197,12 @@
 
   #speaker-note[
     #set text(size: 0.9em)
-    - In a Rust interview, the goal isn't just to show that you know the language, but to also show that you understand what Rust brings to the table in terms of the problems it solves for the organization, the guarantees it provides, and the trade-offs it makes.
-    - The candidates who get offers over equally qualified peers are the ones who demonstrate understanding of problems the organization is trying to solve.
+    - In a Rust interview, the goal isn't just to show that you know the language, but to also show that you understand what Rust brings to the table in terms of the problems it solves for the organization.
+    - The candidates who get offers over equally qualified peers are the ones who demonstrate _understanding_ of problems the organization is trying to solve.
   ]
 ]
 
 = Cost Drivers in Commercial Software Engineering
-
-== How to Stand Out
-
-=== View Software Engineering from the Employer's Perspective
-  - Understand the engineering needs of the employer (hint: return on investment)
-  - Map the capabilities and guarantees of Rust (and its ecosystem) to those needs
-  - Understanding Rust deeply is to understand why organizations choose it.
-
-=== Good News!
-  - Rust is a language that rewards the kind of thinking that organizations actually need from engineers
-  - The skills and mindset that make someone effective at Rust are the generally the same that make someone an effective software engineer
-  - The effort you put into learning Rust and thinking in the way Rust encourages is directly applicable to being a strong engineer in general.
-
-#speaker-note[
-  - The alignment between the skills that make someone effective at Rust and the skills that make someone effective as a professional software engineer is the good news here: 
-  - The questions you ask and the way you frame your answers should demonstrate that you understand Rust in the context of the organization's needs and priorities.
-]
 
 == Employer Motivator: Total Cost of Solution
 #let fh = 0.45
@@ -260,10 +242,36 @@
     - Cost to develop
     - Cost to extend / scale / modify
     - Cost to maintain
-  - In addition to bugs, those costs are affected by:
+  - In addition to bugs, those costs are effected by:
     - Inherent vs accidental complexity
     - Technical debt
     - Talent acquisition and onboarding
+]
+
+
+
+= Preparatory Roadmap
+
+#speaker-note[
+  - This is not a prescription with guaranteed results; ultimately that rests on your consistent and dedicated preparation
+  - What I'm offering here is a way of decomposing the process into something that's manageable over the span of weeks-to-months.
+]
+
+== How to Stand Out
+
+=== View Software Engineering from the Employer's Perspective
+  - Understand the engineering needs of the employer (hint: return on investment)
+  - Map the capabilities and guarantees of Rust (and its ecosystem) to those needs
+  - Understanding Rust deeply is to understand why organizations choose it.
+
+=== Good News!
+  - Rust is a language that rewards the kind of thinking that organizations actually need from engineers
+  - The skills and mindset that make someone effective at Rust are the generally the same that make someone an effective software engineer
+  - The effort you put into learning Rust and thinking in the way Rust encourages is directly applicable to being a strong engineer in general.
+
+#speaker-note[
+  - The alignment between the skills that make someone effective at Rust and the skills that make someone effective as a professional software engineer is the good news here: 
+  - The questions you ask and the way you frame your answers should demonstrate that you understand Rust in the context of the organization's needs and priorities.
 ]
 
 
@@ -337,23 +345,14 @@
   },
 )
 
-= Preparatory Roadmap
-
-#speaker-note[
-  - This is not a prescription with guaranteed results; ultimately that rests on your consistent and dedicated preparation
-  - What I'm offering here is a way of decomposing the process into something that's manageable over the span of weeks-to-months.
-]
-
-== How to go from Candidate to Employee
-
-=== Roadmap to Comprehensive Coverage
+== Roadmap for Comprehensive Coverage
 
 #let next-steps(highlight: none) = {
   let steps = (
     [Figure out what domain(s) you're interested working within, or where you're seeing opportunity],
-    [Dive deeply into the crates exist to serve that ecosystem],
-    [From your research, select the largest, most complicated project and read all the `Cargo.toml` and `build.rs` files],
-    [Pick parts of the standard library and read the source],
+    [Dive deeply into the crates exist to serve that ecosystem. Keyword search on #link("https://lib.rs")["lib.rs"]],
+    [From your research, select the largest, most complicated project and read all the `Cargo.toml`, `build.rs`, and `config.toml` files. Also: #link("https://github.com/microsoft/RustTraining")["Microsoft's Rust Training Books"]],
+    [Pick parts of the standard library and read the source. Also: #link("https://tinyurl.com/container-cheat-sheet")[Container Cheat Sheet]],
     [Read some part of #link("http://cheats.rs")[`cheats.rs`] and/or #link("https://doc.rust-lang.org/book/")[The Rust Book] every day],
   )
   enum(
@@ -468,10 +467,11 @@
 )
 
 #speaker-note[
-   - If you're not sure, pick something general, like "backend web services".
+  - Who here has a particular domain of interest they'd like to work within?
+  - If you're not sure, pick something general, like "backend web services" or "MLOps".
 ]
 
-== Next Steps: Ecosystem
+== Roadmap: Ecosystem
 
 #grid(
   columns: (1fr, auto),
@@ -495,7 +495,7 @@
 //   #image("images/lib-rs.png")
 // ]
 
-== Next Steps: Build System
+== Roadmap: Build System
 
 #grid(
   columns: (1fr, auto),
@@ -513,7 +513,7 @@
   - Try refactoring or improving the organization.
 ]
 
-== Next Steps: Standard Library
+== NRoadmap: Standard Library
 
 #grid(
   columns: (1fr, auto),
@@ -532,7 +532,7 @@
     https://tinyurl.com/container-cheat-sheet
 ]
 
-== Next Steps: Language
+== Roadmap: Language
 
 #grid(
   columns: (1fr, auto),
