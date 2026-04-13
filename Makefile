@@ -24,6 +24,6 @@ clean:
 
 
 flattened-%.pdf: %.pdf
-	gs -dNOPAUSE -dBATCH -sDEVICE=pdfimage32 -sOutputFile=$@ $<
+	gs -dNOPAUSE -dBATCH -sDEVICE=pdfimage24 -sOutputFile=$@ $<
 
 flattened: flattened-$(HANDOUT)
