@@ -9,9 +9,9 @@
 #let speaker = true
 
 #let notes-placement = {
-  if handout      { bottom }
-  else if speaker { right  }
-  else            { none   }
+  if handout      { bottom  }
+  else if speaker { right }
+  else            { none  }
 }
 
 #let qr-src(..args) = {
@@ -28,7 +28,6 @@
     #move(dy: -0.3em)[
       #box[#rotunda()]
       #box[#fa-rust()]
-      #box[#qr-src(height: 1.1em)] 
     ]
   ],
   config-info(
@@ -41,7 +40,7 @@
   config-common(
     show-notes-on-second-screen: notes-placement,
     show-strong-with-alert: false,
-    handout: handout,
+    //handout: handout,
   ),
   config-colors(
     primary: rgb("#eb811b"),
@@ -57,9 +56,6 @@
   pad(left: 1em, top: -0.5em)[#body]
 }
 
-// Overlays `modal-body` centered on top of the slide after a pause.
-// The slide content is shown first; the next subslide reveals the modal.
-// Advancing again moves to the next slide.
 #let modal(modal-body, width: 60%, inset: 2em) = {
   pause
   place(center + horizon,
@@ -86,7 +82,7 @@
     inset: 0.4em,
     radius: 0.35em,
     fill: fill,
-    stroke: (paint: stroke, thickness: 0.6pt),
+    stroke: (paint: stroke, thickness: 1.0pt),
   )[
     #place(top + right,
       box(
@@ -106,7 +102,8 @@
   ]
 }
 
-// Title
+// --------------------------------------------------------------------
+
 #title-slide()
 
 = Context <touying:hidden>
@@ -117,10 +114,9 @@
   #speaker-note[- How many of you have "Rust" on your resume?]
   #pause
   You've landed the interview...
-  #speaker-note[- How many of you have had a Rust interview already?]
+  #speaker-note[- Anyone had a Rust interview already?]
   #pause
   #indent[it's going well...
-    #speaker-note[- Let's assume you're being your best?]
     #pause
     #indent[and the engineering manager asks...]
   ]
@@ -134,8 +130,9 @@
   ]
 
   #speaker-note[
-    - How would you answer? Most candidates haven't thought about that question, especially if they're recent graduates.
-    - *I’m going to show you a way of thinking about Rust that most engineers only develop after years of experience, helping you stand out as a candidate.*
+    - How would you answer? 
+    - *I’m going to show you a way of thinking about Rust that most engineers only develop after years of experience, helping you stand out as a candidate*
+    - With limited time, some of this content is intended for later reading. Slides will be available vai a QR code at the end.
   ]
 ]
 
@@ -172,8 +169,7 @@
 
 #speaker-note[
   - My goal is to bring a practical  perspective to Rust in the context of professional software engineering, both as a developer and as a manager.
-  - It takes years to master a language, something we can't achieve here nor before a near-term interview. 
-  - However, we can develop a roadmap for becoming a stand-out candidate.
+  - It takes years to master a language, something we can't achieve here or before a near-term interview. However, we can develop a roadmap for becoming a stand-out candidate by mapping the organizations needs to what Rust provides.
 ]
 
 == Restatement
@@ -187,9 +183,7 @@
 
   #speaker-note()[
     #set text(size: 0.9em)
-    - The crux of this presentation:
-      - Think about the "Why" for the organization
-      - Then understand the "How"
+    - The crux of this presentation: Understand the "why", and then map the "how"
   ]
   #pause
   #v(0.5em)
@@ -198,11 +192,20 @@
   #speaker-note[
     #set text(size: 0.9em)
     - In a Rust interview, the goal isn't just to show that you know the language, but to also show that you understand what Rust brings to the table in terms of the problems it solves for the organization.
+    - My opinion is that the best candidates are the ones who understand  and consider how engineering decisions impact the broader goals of the organization
     - The candidates who get offers over equally qualified peers are the ones who demonstrate _understanding_ of problems the organization is trying to solve.
   ]
 ]
 
-= Cost Drivers in Commercial Software Engineering
+= What Software Engineering Organizations Want
+
+#speaker-note[
+  - Follow the money: 
+    - Make more than competitors... 
+    - Deliver more of what the customer wants with fewer resources...
+  - The best engineers I've worked with are those that understand the broad potential impact of the solutions they deliver
+  - The chosen technology for a solution can have massive impacts
+]
 
 == Employer Motivator: Total Cost of Solution
 #let fh = 0.45
@@ -242,39 +245,57 @@
     - Cost to develop
     - Cost to extend / scale / modify
     - Cost to maintain
-  - In addition to bugs, those costs are effected by:
+  - In addition to bugs, those costs are affected by:
     - Inherent vs accidental complexity
     - Technical debt
     - Talent acquisition and onboarding
+  - New(-ish) concerns:
+    - Memory has become expensive. Footprint matters
+    - Energy costs are also becoming a focus
 ]
-
-
 
 = Preparatory Roadmap
 
 #speaker-note[
-  - This is not a prescription with guaranteed results; ultimately that rests on your consistent and dedicated preparation
-  - What I'm offering here is a way of decomposing the process into something that's manageable over the span of weeks-to-months.
+  - First we'll define three categories of impactful Rust capabilities; then we'll discuss a roadmap for mapping the capabilities to a selected domain
+  - This is not a prescription with guaranteed results
+  - What I'm offering here is a way of decomposing the process into something that's manageable over the span of weeks-to-months, where your efforts will be evident in the interview 
 ]
 
-== How to Stand Out
+== Know Rust, Know the Employer
 
-=== View Software Engineering from the Employer's Perspective
-  - Understand the engineering needs of the employer (hint: return on investment)
-  - Map the capabilities and guarantees of Rust (and its ecosystem) to those needs
-  - Understanding Rust deeply is to understand why organizations choose it.
+  #align(center)[
+    #quote(block: true, quotes: false)[
+      #text(size: 1.4em)[
+      Understanding Rust deeply is understanding why organizations choose it
+      ]
+    ]
+  ]
 
-=== Good News!
-  - Rust is a language that rewards the kind of thinking that organizations actually need from engineers
-  - The skills and mindset that make someone effective at Rust are the generally the same that make someone an effective software engineer
-  - The effort you put into learning Rust and thinking in the way Rust encourages is directly applicable to being a strong engineer in general.
+#pause
+
+#v(3em)
+
+#align(center)[
+  #block(
+    width: 75%,
+    inset: 0.9em,
+    radius: 0.5em,
+    fill: rgb("#6f99b9"),
+    stroke: 1pt + rgb("#23233b"),
+  )[
+    #set par(justify: true)
+    #set text(fill: white, weight: "regular")
+    The skills that make someone effective at Rust and those that make a professional software engineer are well aligned.
+  ]
+]
 
 #speaker-note[
-  - The alignment between the skills that make someone effective at Rust and the skills that make someone effective as a professional software engineer is the good news here: 
   - The questions you ask and the way you frame your answers should demonstrate that you understand Rust in the context of the organization's needs and priorities.
+  - Here's how to demonstrate that
 ]
 
-
+== How Rust Delivers <touying:hidden>
 #slide(
   title: [How Rust Delivers],
   repeat: 3,
@@ -331,7 +352,7 @@
       )
 
       #speaker-note(subslide: [1,2,3])[
-        - Baseline: Your understanding of these these items will be a _given_. Make sure you understand deeply how Rust achieves these.
+        - Baseline: Your understanding of these items will be a _given_. Make sure you understand deeply how Rust achieves these.
       ]
 
       #speaker-note(subslide: [2,3])[
@@ -345,13 +366,13 @@
   },
 )
 
-== Roadmap for Comprehensive Coverage
+== Mapping Rust to a Domain
 
 #let next-steps(highlight: none) = {
   let steps = (
     [Figure out what domain(s) you're interested working within, or where you're seeing opportunity],
-    [Dive deeply into the crates exist to serve that ecosystem. Keyword search on #link("https://lib.rs")["lib.rs"]],
-    [From your research, select the largest, most complicated project and read all the `Cargo.toml`, `build.rs`, and `config.toml` files. Also: #link("https://github.com/microsoft/RustTraining")["Microsoft's Rust Training Books"]],
+    [Dive deeply into the crates exist to serve that ecosystem. Keyword search on #link("https://lib.rs")[`lib.rs`]],
+    [From your research, select the largest, most complicated project and read all the `Cargo.toml`, `build.rs`, and `config.toml` files. Also: #link("https://github.com/microsoft/RustTraining")["Microsoft Rust Training Books"]],
     [Pick parts of the standard library and read the source. Also: #link("https://tinyurl.com/container-cheat-sheet")[Container Cheat Sheet]],
     [Read some part of #link("http://cheats.rs")[`cheats.rs`] and/or #link("https://doc.rust-lang.org/book/")[The Rust Book] every day],
   )
@@ -450,7 +471,8 @@
   - You will want to come at this from both directions
     - Sometimes focus on top-down
     - Other times focus bottom-up
-  - We're going to (somewhat) arbitrarily go through this top-down 
+  - Many people will start from the bottom and never make it to the top
+  - To stand out in an interview, convey an understanding of how the domain is served by everything below
 ]
 
 == Next Steps: Domain
@@ -467,8 +489,9 @@
 )
 
 #speaker-note[
+  - This may be the most difficult part for some of you
   - Who here has a particular domain of interest they'd like to work within?
-  - If you're not sure, pick something general, like "backend web services" or "MLOps".
+  - If you're not sure, pick something general, like "backend web services" or "MLOps" or "infrastructure"
 ]
 
 == Roadmap: Ecosystem
@@ -486,14 +509,17 @@
 
 #speaker-note[
   - Search keywords on lib.rs
-  - Read articles. Read the source. Experiment with them. Form an opinion.
+  - Read articles. Read the source. Experiment with them. 
+  - Form an opinion!
+    - What is clear or compelling?
+    - What would you do differently?
 ]
 
-// #modal[
-//   === https://lib.rs 
-//   Helpful Tags and Cross References
-//   #image("images/lib-rs.png")
-// ]
+#modal[
+  === Unofficial Alternative to crates.io 
+  #link("https://lib.rs")
+  #image("images/lib-rs.png")
+]
 
 == Roadmap: Build System
 
@@ -513,7 +539,13 @@
   - Try refactoring or improving the organization.
 ]
 
-== NRoadmap: Standard Library
+#modal[
+  === Microsoft Rust Training Books
+  #link("https://github.com/microsoft/RustTraining")
+  #image("images/microsoft-rust-training.png", height: 90%)
+]
+
+== Roadmap: Standard Library
 
 #grid(
   columns: (1fr, auto),
@@ -529,7 +561,12 @@
 #speaker-note[
   - If you don't understand a design decision, ask AI to explain.
   - Check out the container cheat sheet, and map the diagrams to the actual declarations. 
-    https://tinyurl.com/container-cheat-sheet
+]
+
+#modal[
+  === Container Cheat Sheet
+  #link("https://tinyurl.com/container-cheat-sheet")
+  #image("images/container-cheat-sheet.svg", height: 90%)
 ]
 
 == Roadmap: Language
@@ -548,7 +585,14 @@
 #speaker-note[
   - Again, Research what you don't understand.
   - Go down rabbit holes.
+  - Experiment
   - Take notes on what you learn.
+]
+
+#modal[
+  === The Best Cheat Sheet Ever!
+  #link("https://cheats.rs")
+  #image("images/cheats-rs.png", height: 90%)
 ]
 
 == Full Roadmap
@@ -565,47 +609,67 @@
 )
 
 #speaker-note[
-  - Again, to be effective, alternate directions, biasing the one where your understanding and knowledge are weaker.
+   - Again, think about how the language all the way up through the crate ecosystem serves the domain you're interviewing for.
 ]
 
 == Educational Resources
 
 - *Remember*: Nothing beats writing code and working through challenging problems (with patience and consistency)
 
-- Generally, any search will provide a plethora of great educational resources. Pick the ones that fit your learning style.
+- Generally, any search will provide a plethora of great educational resources. 
 
-- Personal "Hall of Fame":
-  - https://doc.rust-lang.org
-  - https://cheats.rs
-  - https://lib.rs
-  - https://github.com/microsoft/RustTraining
-  - https://tinyurl.com/container-cheat-sheet
-  - https://github.com/rust-unofficial/awesome-rust
+#grid(
+  columns: (1fr, auto),
+  gutter: 1em,
+  align(top)[
+    - Some "Starters":
+      - https://doc.rust-lang.org
+      - https://cheats.rs
+      - https://lib.rs
+      - https://www.youtube.com/@jonhoo
+      - https://github.com/microsoft/RustTraining
+      - https://tinyurl.com/container-cheat-sheet
+      - https://github.com/rust-unofficial/awesome-rust
+  ],
+  align(right + bottom)[
+    #link("https://a.co/d/0hKPkio4")[
+      #box(stroke: 0.5pt + rgb("#23233b"))[
+        #image("images/rust-for-rustaceans.jpg", height: 11em)
+      ]
+    ]
+  ],
+)
 
 #speaker-note()[
   - Different people have different learning styles
   - Some are book-first, others are do-first
   - Try multiple ways, but lean into what's intuitive for you
+  - _Rust for Rustaceans_ is fantastic, but not a beginner book. Tackle it after learning the foundations
 ]
 
 == Final Thoughts
 
 #utils.fit-to-height(100%)[
 
-  === Remember the Good News!
-  - The qualities that make a great engineer and the qualities that make someone good at Rust are unusually well-aligned
+  === Next Steps
+  - Today: Get inspired by #link("http://cheats.rs")[`cheats.rs`]! 😎
+  - This week: find something that interests you and see what Rust has to say about it according to our roadmap
+  - Before your next interview: write down a thesis on why that organization chose Rust. Back up your thesis with research. Use it when invited to ask questions during the interview.
+
+  === Good News!
+  - The skills and mindset that make someone effective at Rust are generally the same that make someone an effective software engineer
   - Rust rewards the kind of thinking that organizations actually need to deliver profitable solutions
   - Even if you don't land that dream Rust job, everything you do to work towards it will serve you extremely well in any software engineering job
-
-  === What #underline[I] Look For:
-  - Genuine engagement in both the problem and solution spaces (genuine engagement is something you can develop!)
-  - Also, the candidates who stand out aren't the ones with all the answers. They're the ones who ask the question that shows they understand there's a larger context
 ]
 
 #speaker-note[
+  - What I Look For:
+    - Genuine engagement in both the problem and solution spaces (genuine engagement is something you can develop!)
+    - Also, the candidates who stand out aren't the ones with all the answers. They're the ones who ask the question that shows they understand there's a larger context
+  - The effort you put into learning Rust and thinking in the way Rust encourages is directly applicable to being a strong engineer in general.
 ]
 
-== Follow-on Information
+== Thank You!
 
 #align(center + top)[
   This presentation is available on GitHub:
@@ -617,12 +681,11 @@
   #fa-github() #link("https://github.com/metasim")[github.com/metasim]
 
   #align(bottom)[
-    PS: These slides were #link("https://github.com/typst/typst")[rendered by Rust!]
+    PS: These slides were #link("https://github.com/typst/typst")[rendered with Rust!]
   ]
 ]
 
 #speaker-note[
   - Feel free to message me on LinkedIn, or via the contact info on my business card.
-  - If there's interest, I'd be happy to meet informally to discuss Rust with a group of at least 3, if someone else coordinates it.
+  - If there's interest, I'd be happy to meet informally to discuss Rust with a group.
 ]
-

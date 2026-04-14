@@ -3,7 +3,7 @@ SRC     := rust-interviewing.typ
 OUTPUT  := rust-interviewing.pdf
 HANDOUT := rust-interviewing-handout.pdf
 
-.PHONY: all clean watch handout
+.PHONY: all clean watch handout flattened present
 
 all: $(OUTPUT) 
 
@@ -24,6 +24,9 @@ clean:
 
 
 flattened-%.pdf: %.pdf
-	gs -dNOPAUSE -dBATCH -sDEVICE=pdfimage24 -sOutputFile=$@ $<
+	gs -dNOPAUSE -dBATCH -sDEVICE=pdfimage32 -sOutputFile=$@ $<
 
 flattened: flattened-$(HANDOUT)
+
+present: $(OUTPUT)
+	pympress $<

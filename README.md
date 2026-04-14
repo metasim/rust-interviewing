@@ -1,13 +1,13 @@
 # Sharpening your Rust Skills for Job Interviews
-_How to Become a Stand-out Candidate_
+**How to Become a Stand-out Candidate**
 
-_Charlottesville Rust Meetup_  
 April 14th, 2026  
+
+_Charlottesville Rust Meetup_   
 Brown Science & Engineering Library  
 University of Virginia  
 
 ## Render
-
 
 ### Presentation Slides
 ```
