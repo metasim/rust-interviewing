@@ -6,12 +6,12 @@
 #fa-version("6")
 
 #let handout = sys.inputs.at("handout", default: "false") == "true"
-#let speaker = true
+#let speaker = sys.inputs.at("speaker", default: "false") == "true"
 
 #let notes-placement = {
-  if handout      { bottom  }
+  if handout      { bottom }
   else if speaker { right }
-  else            { none  }
+  else            { none }
 }
 
 #let qr-src(..args) = {
@@ -40,7 +40,6 @@
   config-common(
     show-notes-on-second-screen: notes-placement,
     show-strong-with-alert: false,
-    //handout: handout,
   ),
   config-colors(
     primary: rgb("#eb811b"),
