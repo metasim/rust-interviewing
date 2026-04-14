@@ -110,7 +110,7 @@
 == The Interview
 
 #focus-slide(align: left, config: config-common(freeze-slide-counter: false))[
-  #speaker-note[- How many of you have "Rust" on your resume?]
+  #speaker-note[- How many of you have "Rust" on your resume?\ What other languages?]
   #pause
   You've landed the interview...
   #speaker-note[- Anyone had a Rust interview already?]
@@ -131,7 +131,6 @@
   #speaker-note[
     - How would you answer? 
     - *I’m going to show you a way of thinking about Rust that most engineers only develop after years of experience, helping you stand out as a candidate*
-    - With limited time, some of this content is intended for later reading. Slides will be available vai a QR code at the end.
   ]
 ]
 
@@ -169,6 +168,7 @@
 #speaker-note[
   - My goal is to bring a practical  perspective to Rust in the context of professional software engineering, both as a developer and as a manager.
   - It takes years to master a language, something we can't achieve here or before a near-term interview. However, we can develop a roadmap for becoming a stand-out candidate by mapping the organizations needs to what Rust provides.
+  - We have limited time, so some content may need some later reading. Slides will be available vai a QR code at the end.
 ]
 
 == Restatement
